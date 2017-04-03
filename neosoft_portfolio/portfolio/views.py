@@ -23,3 +23,12 @@ class ProjectDetailsView(View):
 
         project = get_object_or_404(Project, **{'id': pid})
         return render(request, "pages/project_details.html", {'project': project})
+
+class PortfolioView(View):
+    """
+    """
+    def get(self, request):
+        projects = Project.objects.filter(is_active=True)
+        data = {'projects': projects}
+        return render(request, 'pages/portfolio.html', data)
+
